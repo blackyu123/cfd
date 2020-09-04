@@ -4,25 +4,25 @@ import Cookies from "js-cookie";
 import {locale} from "../locale";
 const API_HOST = "https://tdmxapi.bclg.in";
 
-export default class DataSource {
+export default class Datasource {
 
     constructor() {
         this.token = null;
     }
 
     static get shared() {
-        if (DataSource.instance == null || DataSource.instance === undefined) {
-            DataSource.instance = new DataSource();
+        if (Datasource.instance == null || Datasource.instance === undefined) {
+            Datasource.instance = new Datasource();
         }
 
-        let instanceToken = DataSource.instance.token;
+        let instanceToken = Datasource.instance.token;
         if (instanceToken === undefined || instanceToken === "null") {
             instanceToken = Cookies.get("ftnToken");
             console.log("instanceToken", instanceToken);
         } else {
             console.log('notinstance', instanceToken);
         }
-        return DataSource.instance;
+        return Datasource.instance;
     }
 
     async callAPI(endPoint, method = "GET", queryObject, requestBody, hasContentType = true) {
